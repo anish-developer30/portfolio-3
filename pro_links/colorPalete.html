@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Palette ❤️ </title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+
+        body {
+            background: #222;
+        }
+
+        .container {
+            margin: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .container .color {
+            background: #fff;
+            list-style: none;
+            margin: 10px;
+            padding: 7px;
+            border-radius: 6px;
+            text-align: center;
+            cursor: pointer;
+            box-shadow: 10px 15px #000;
+            transition: transform 0.3s ease;
+        }
+
+        .container .color:active {
+            transform: scale(0.95);
+
+        }
+
+        .color:hover .rect-box {
+            filter: brightness(110%);
+        }
+
+        .color .hex-value {
+            display: block;
+            color: #444;
+            font-weight: 500;
+            font-size: 1.15rem;
+            margin: 10px 0 8px;
+            text-transform: uppercase;
+        }
+
+        .color .rect-box {
+            width: 100px;
+            height: 100px;
+            border-radius: 5px;
+            background: #8A6CFF;
+
+        }
+
+        .refresh-btn {
+            position: fixed;
+            left: 50%;
+            bottom: 10px;
+            outline: none;
+            font-size: 1.1rem;
+            padding: 10px 20px;
+            font-weight: 500;
+            color: #fff;
+            background: #8A6CFF;
+            border: 2px solid #fff;
+            border-radius: 10px;
+            transform: translateX(-50%);
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <ul class="container"></ul>
+    <button class="refresh-btn">Refresh Palette</button>
+
+    <script>
+        const refreshBtn = document.querySelector(".refresh-btn");
+        const container = document.querySelector(".container");
+        const maxbox = 27;
+        const generatePalette = () => {
+            container.innerHTML = " ";
+            for (i = 0; i < maxbox; i++) {
+                let randomHex = Math.floor(Math.random() * 0xffffff).toString(16);
+                randomHex = `#${randomHex.padStart(6, "0")}`
+
+                const color = document.createElement("li");
+                color.classList.add("color");
+                color.innerHTML = `<div class="rect-box" style="background:${randomHex}"></div>
+                                   <span class="hex-value">${randomHex}</span>`;
+                color.addEventListener("click", () => copyColor(color, randomHex));
+
+                container.appendChild(color);
+            }
+        }
+        generatePalette();
+        const copyColor = (elem, haxVal) => {
+            const colorElement = elem.querySelector(".hex-value");
+            // console.log(elem, haxval);
+            navigator.clipboard.writeText(haxVal).then(() => {
+                colorElement.innerHTML = "Copied"
+                setTimeout(() => colorElement.innerHTML = haxVal, 1000);
+            })
+
+
+        }
+        refreshBtn.addEventListener("click", generatePalette);    </script>
+
+
+</body>
+
+</html>

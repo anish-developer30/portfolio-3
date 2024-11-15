@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Linear-Gradient color</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        #bodybg {
+            width: 100%;
+            height: 100vh;
+            background-image: linear-gradient(to right, #9714f6, #0d20e2);
+        }
+
+        #centerdiv {
+            width: 100%;
+            position: absolute;
+            top: 30%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: bold;
+            color: rgba(0, 0, 0, .8);
+            text-transform: uppercase;
+            letter-spacing: .3rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: rgba(0, 0, 0, .8);
+            text-transform: uppercase;
+            letter-spacing: .5rem;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: rgba(0, 0, 0, .8);
+            text-transform: capitalize;
+            letter-spacing: .2rem;
+            width: 80%;
+            margin: auto;
+        }
+    </style>
+</head>
+
+<body id="bodybg">
+    <div id="centerdiv">
+        <h1>BACKGRAOUND COLOR GENERATOR</h1>
+        <br><br>
+        <h2>PICK THE COLOR</h2>
+        <br><br>
+        <input type="color" id="colorone" value="#657A99">
+        <input type="color" id="colortwo" value="#95C42B">
+        <br><br>
+        <h3 id="show"></h3>
+    </div>
+
+
+    <script>
+
+        const one = document.getElementById('colorone');
+        const two = document.getElementById('colortwo');
+        const bodybg = document.getElementById('bodybg');
+        const show = document.getElementById('show');
+
+        function setbgcolor() {
+            bodybg.style.background = `linear-gradient(to right,${colorone.value},${colortwo.value})`;
+            show.textContent = `copy code: linear-gradient(35deg,${colorone.value},${colortwo.value})`;
+        }
+        one.addEventListener('input', setbgcolor);
+        two.addEventListener('input', setbgcolor);
+    </script>
+</body>
+
+</html>

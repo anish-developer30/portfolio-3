@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word and Character Counter</title>
+    <style>
+        body {
+            padding: 100px 200px;
+            font-family: sans-serif;
+        }
+
+        h2 {
+            text-align: center;
+            background-color: green;
+            color: white;
+            padding: 10px;
+            margin: 0px;
+        }
+
+        textarea {
+            font-family: sans-serif;
+            width: 99.3%;
+            border: 2px solid green;
+            font-size: 20px;
+            font-weight: bold;
+            text-transform: capitalize;
+        }
+
+        p {
+            text-align: center;
+            background-color: green;
+            color: white;
+            padding: 10px;
+            margin: 0px;
+            font-weight: bold;
+        }
+
+        span {
+            margin: 10px;
+            color: #000;
+        }
+    </style>
+</head>
+
+<body>
+    <h2> <span>Word</span> and <span>Character</span> Counter</h2>
+    <textarea id="text" cols="30" rows="10"></textarea>
+    <p><span id="word">0</span> Word <span id="char">0</span> Character</p>
+
+
+    <script>
+        let text = document.getElementById("text");
+        text.addEventListener('input', function (e) {
+            let val = this.value;
+            let len = val.length;
+            document.getElementById("char").innerHTML = len;
+            val = val.trim();
+            let word = val.split(" ");
+            let change = word.filter(function (v) {
+                return v != "";
+            });
+            document.getElementById("word").innerHTML = change.length;
+
+
+
+        });
+    </script>
+
+</body>
+
+</html>
